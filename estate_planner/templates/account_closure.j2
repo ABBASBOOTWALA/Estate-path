@@ -1,0 +1,47 @@
+{{ executor_name }}
+{{ executor_address }}
+{{ executor_city_state_zip }}
+Phone: {{ executor_phone }}
+Email: {{ executor_email }}
+
+{{ today_date }}
+
+{{ institution_name }}
+{{ institution_address }}
+
+RE: Request for Account Closure — Estate of {{ deceased_name }}
+{% if account_number %}Account Number: {{ account_number }}{% endif %}
+
+To the Estate Services Department at {{ institution_name }}:
+
+I am the executor / personal representative of the Estate of {{ deceased_name }}, who passed away on {{ date_of_death }}.
+
+I am writing to formally request the closure of all accounts held by the deceased at {{ institution_name }} and the transfer of any remaining balance to the estate.
+
+Please take the following actions:
+
+  1. Close all accounts associated with {{ deceased_name }} (DOB: {{ deceased_dob }})
+  2. Cancel all autopay arrangements, recurring charges, and subscriptions
+  3. Issue a final account statement reflecting the balance as of the date of death ({{ date_of_death }})
+  4. Transfer the remaining balance via check payable to "Estate of {{ deceased_name }}" to the address above, or provide wire transfer instructions
+
+If there are any outstanding obligations, fees, or steps required before closure, please notify me in writing at the address above.
+
+Enclosed with this letter:
+  - Certified copy of the death certificate
+  - Letters Testamentary authorizing me to act on behalf of the estate
+  - Government-issued photo ID of executor
+
+Please confirm in writing when the account has been closed and the balance transferred. I appreciate your assistance.
+
+Sincerely,
+
+
+{{ executor_name }}
+Executor / Personal Representative
+Estate of {{ deceased_name }}
+
+Enclosures:
+  - Certified copy of death certificate
+  - Letters Testamentary / Letters of Administration
+  - Government-issued photo ID of executor

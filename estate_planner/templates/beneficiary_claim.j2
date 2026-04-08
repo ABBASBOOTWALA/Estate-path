@@ -1,0 +1,49 @@
+{{ executor_name }}
+{{ executor_address }}
+{{ executor_city_state_zip }}
+Phone: {{ executor_phone }}
+Email: {{ executor_email }}
+
+{{ today_date }}
+
+{{ institution_name }}
+Benefits / Beneficiary Services Department
+{{ institution_address }}
+
+RE: Beneficiary Claim — Account of {{ deceased_name }}
+{% if account_number %}Account / Policy Number: {{ account_number }}{% endif %}
+
+To the Beneficiary Services Department at {{ institution_name }}:
+
+I am writing to initiate a beneficiary claim for the account(s) of {{ deceased_name }}, date of birth {{ deceased_dob }}, who passed away on {{ date_of_death }}.
+
+I am listed as a named beneficiary / I am the executor / personal representative of the estate acting on behalf of the named beneficiary(ies), and I am requesting the following:
+
+  1. Please confirm the beneficiary designation(s) currently on file for this account
+  2. Send all required beneficiary claim forms to the address listed above
+  3. Provide the current account balance / benefit amount as of the date of death
+  4. Advise on the available distribution options (lump sum, rollover, periodic payments, etc.)
+  5. Provide the estimated timeline for claim processing and distribution
+
+I understand that the following documents may be required:
+  - Certified copy of the death certificate
+  - Completed beneficiary claim form
+  - Government-issued photo ID of each beneficiary
+  - Beneficiary's Social Security number (for tax reporting)
+  - Letters Testamentary (if claiming through the estate)
+
+Please note that I am consulting with a tax advisor regarding the most advantageous distribution election and may need a brief period to make that decision. Please advise on any election deadlines that apply.
+
+Please contact me at the phone number or email above to confirm receipt and to begin the claims process.
+
+Sincerely,
+
+
+{{ executor_name }}
+Executor / Personal Representative / Beneficiary
+Estate of {{ deceased_name }}
+
+Enclosures:
+  - Certified copy of death certificate
+  - Government-issued photo ID
+  - Letters Testamentary / Letters of Administration [if applicable]

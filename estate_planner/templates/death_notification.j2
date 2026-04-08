@@ -1,0 +1,46 @@
+{{ executor_name }}
+{{ executor_address }}
+{{ executor_city_state_zip }}
+Phone: {{ executor_phone }}
+Email: {{ executor_email }}
+
+{{ today_date }}
+
+{{ institution_name }}
+{{ institution_address }}
+
+RE: Notice of Death — {{ deceased_name }}
+{% if account_number %}Account / Policy Number: {{ account_number }}{% endif %}
+
+To the Estate Services Department at {{ institution_name }}:
+
+I am writing to formally notify you of the passing of {{ deceased_name }}, date of birth {{ deceased_dob }}, who passed away on {{ date_of_death }}.
+
+I have been appointed as the executor / personal representative of the Estate of {{ deceased_name }} and am authorized to act on behalf of the estate.
+
+I respectfully request that you:
+
+  1. Place a hold on all accounts associated with the deceased
+  2. Provide the account balance(s) as of the date of death ({{ date_of_death }})
+  3. Send any required claim, transfer, or closure forms to the address listed above
+  4. Cease any automatic payments, withdrawals, or recurring charges
+
+Enclosed with this letter, please find:
+  - Certified copy of the death certificate
+  - Letters Testamentary (or Letters of Administration), if required
+
+Please contact me at your earliest convenience to confirm receipt of this notice and to advise on the next steps required to close or transfer the above-referenced account(s).
+
+I appreciate your patience and assistance during this difficult time.
+
+Sincerely,
+
+
+{{ executor_name }}
+Executor / Personal Representative
+Estate of {{ deceased_name }}
+
+Enclosures:
+  - Certified copy of death certificate
+  - Letters Testamentary / Letters of Administration [if obtained]
+  - Government-issued photo ID of executor
