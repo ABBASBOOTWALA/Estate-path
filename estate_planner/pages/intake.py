@@ -31,6 +31,12 @@ ESTATE_VALUES = [
 def show():
     st.header("Estate Intake")
     st.caption("Complete this once to personalize your estate checklist, deadlines, and guidance.")
+    st.info(
+        "**Your data is encrypted.** All personal information (name, SSN, addresses) is encrypted "
+        "using AES-256 (Fernet) and the encryption key is stored in your OS keychain "
+        "(Windows Credential Manager). Nothing is uploaded or transmitted.",
+        icon="🔒",
+    )
 
     if "intake_step" not in st.session_state:
         st.session_state.intake_step = 1
@@ -140,7 +146,10 @@ def show():
             data["executor_email"] = st.text_input("Email address", value=data.get("executor_email", ""))
         data["social_security_number_last4"] = st.text_input(
             "Last 4 digits of deceased's Social Security Number (for letters)",
-            max_chars=4, value=data.get("social_security_number_last4", "")
+            max_chars=4,
+            type="password",
+            value=data.get("social_security_number_last4", ""),
+            help="Stored encrypted in your OS keychain-protected local storage. Never transmitted.",
         )
 
         col1, col2 = st.columns(2)

@@ -8,30 +8,58 @@ from core.models import (
     DeceasedProfile, EstateTask, GeneratedDocument,
     Deadline, ActivityEntry
 )
+from core.security import encrypt, decrypt
 
 BASE_DIR = Path.home() / ".estatepath"
 DOCS_DIR = BASE_DIR / "documents"
+
+# Files that contain PII / sensitive data — stored encrypted
+_SENSITIVE = {"profile.json", "activity_log.json"}
 
 
 def _ensure_dirs():
     BASE_DIR.mkdir(exist_ok=True)
     DOCS_DIR.mkdir(exist_ok=True)
+    # Restrict directory permissions on POSIX systems
+    try:
+        os.chmod(BASE_DIR, 0o700)
+    except Exception:
+        pass
 
 
-def _read(filename: str) -> any:
+def _read(filename: str):
     _ensure_dirs()
     path = BASE_DIR / filename
     if not path.exists():
         return None
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+    if filename in _SENSITIVE:
+        raw = path.read_bytes()
+        # Support migration: if file starts with '{' or '[' it's legacy plain text
+        if raw[:1] in (b"{", b"["):
+            data = json.loads(raw.decode("utf-8"))
+            # Re-save encrypted immediately
+            _write(filename, data)
+            return data
+        return json.loads(decrypt(raw))
+    else:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
 
 
-def _write(filename: str, data: any):
+def _write(filename: str, data):
     _ensure_dirs()
     path = BASE_DIR / filename
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+    if filename in _SENSITIVE:
+        ciphertext = encrypt(json.dumps(data, ensure_ascii=False))
+        path.write_bytes(ciphertext)
+        # Restrict file permissions on POSIX systems
+        try:
+            os.chmod(path, 0o600)
+        except Exception:
+            pass
+    else:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
 
 
 # ── Profile ──────────────────────────────────────────────
